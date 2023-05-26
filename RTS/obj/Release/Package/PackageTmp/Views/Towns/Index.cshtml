@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RTS.Models.Town>
+
+@{
+    ViewBag.Title = "TownsIndex";
+}
+<div class="card">
+    <h2 class="card-header">Towns</h2>
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Create New", "Create", new { @class = "btn btn-primary" })
+        </p>
+        <table class="table" id="townsTable">
+            <thead>
+                <tr>
+                    <th>
+                        Towns
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.town_desc)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+    </div>
+    </div>
+    @section Scripts {
+        <script>
+            $("document").ready(function () {
+                $("#townsTable").DataTable();
+            });
+
+        </script>
+    }

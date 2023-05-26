@@ -1,0 +1,56 @@
+﻿@model IEnumerable<RTS.Models.SubDivision>
+
+@{
+    ViewBag.Title = "SubDivisions";
+}
+
+<div class="card">
+    <h2 class="card-header">Sub Divisions</h2>
+    <div class="card-body">
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table" id="SDTable">
+            <thead>
+
+
+                <tr>
+                    <th>
+                        Sub Division
+                    </th>
+                    <th>
+                        Town
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subdivision_desc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Town.town_desc)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @*   @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+            $("document").ready(function () {
+                $("#SDTable").DataTable();
+            });
+
+    </script>
+}

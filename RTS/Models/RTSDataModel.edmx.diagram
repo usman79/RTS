@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0277deeb85a64875bb7408515ef9f8af" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="RTSDBModel.Account" Width="1.5" PointX="3.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTSDBModel.AFI" Width="1.5" PointX="5.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTSDBModel.SubDivision" Width="1.5" PointX="0.625" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTSDBModel.Town" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTSDBModel.Ward" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="RTSDBModel.FK_WardAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="RTSDBModel.FK_SubDivisionWard" ManuallyRouted="false" />
+        <AssociationConnector Association="RTSDBModel.FK_TownSubDivision" ManuallyRouted="false" />
+        <AssociationConnector Association="RTSDBModel.FK__Ward__AFI_Id__5AEE82B9" />
+        <EntityTypeShape EntityType="RTSDBModel.accountDetail" Width="1.5" PointX="5.75" PointY="3.625" />
+        <AssociationConnector Association="RTSDBModel.FK__accountDe__accou__5FB337D6" />
+        <EntityTypeShape EntityType="RTSDBModel.Token" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="RTSDBModel.userToken" Width="1.5" PointX="2.75" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
