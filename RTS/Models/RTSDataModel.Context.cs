@@ -33,5 +33,6 @@ namespace RTS.Models
         public virtual DbSet<accountDetail> accountDetails { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
         public virtual DbSet<userToken> userTokens { get; set; }
+        public virtual DbSet<appUser> appUsers { get; set; }
     }
 }

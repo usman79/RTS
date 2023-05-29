@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RTSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="amount_due" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+    <Property Name="Ward_Id" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="walk_sort" Type="Int32" Nullable="false" />
+    <Property Name="property_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="accountDetails" Relationship="Self.FK__accountDe__accou__5FB337D6" FromRole="Account" ToRole="accountDetail" />
+    <NavigationProperty Name="Ward" Relationship="Self.FK_WardAccount" FromRole="Account" ToRole="Ward" />
+  </EntityType>
+  <EntityType Name="accountDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="visit_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="visit_lat" Type="Double" />
+    <Property Name="visit_long" Type="Double" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="accountId" Type="Int32" Nullable="false" />
+    <Property Name="is_assigned" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="assignment_date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__accountDe__accou__5FB337D6" FromRole="accountDetail" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="AFI">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ticket" Type="Int32" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+    <NavigationProperty Name="appUsers" Relationship="Self.FK__appUser__afi_id__17036CC0" FromRole="AFI" ToRole="appUser" />
+    <NavigationProperty Name="Wards" Relationship="Self.FK__Ward__AFI_Id__5AEE82B9" FromRole="AFI" ToRole="Ward" />
+  </EntityType>
+  <EntityType Name="appUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ticket" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="afi_id" Type="Int32" />
+    <Property Name="rfi_id" Type="Int32" />
+    <NavigationProperty Name="AFI" Relationship="Self.FK__appUser__afi_id__17036CC0" FromRole="appUser" ToRole="AFI" />
+  </EntityType>
+  <EntityType Name="SubDivision">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subdivision_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Town_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Wards" Relationship="Self.FK_SubDivisionWard" FromRole="SubDivision" ToRole="Ward" />
+    <NavigationProperty Name="Town" Relationship="Self.FK_TownSubDivision" FromRole="SubDivision" ToRole="Town" />
+  </EntityType>
+  <EntityType Name="Town">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="town_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SubDivisions" Relationship="Self.FK_TownSubDivision" FromRole="Town" ToRole="SubDivision" />
+  </EntityType>
+  <EntityType Name="Ward">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ward_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubDivision_Id" Type="Int32" Nullable="false" />
+    <Property Name="AFI_Id" Type="Int32" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_WardAccount" FromRole="Ward" ToRole="Account" />
+    <NavigationProperty Name="AFI" Relationship="Self.FK__Ward__AFI_Id__5AEE82B9" FromRole="Ward" ToRole="AFI" />
+    <NavigationProperty Name="SubDivision" Relationship="Self.FK_SubDivisionWard" FromRole="Ward" ToRole="SubDivision" />
+  </EntityType>
+  <Association Name="FK__accountDe__accou__5FB337D6">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="accountDetail" Type="Self.accountDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="accountDetail">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WardAccount">
+    <End Role="Ward" Type="Self.Ward" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ward">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Ward_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__appUser__afi_id__17036CC0">
+    <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
+    <End Role="appUser" Type="Self.appUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appUser">
+        <PropertyRef Name="afi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ward__AFI_Id__5AEE82B9">
+    <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
+    <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ward">
+        <PropertyRef Name="AFI_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubDivisionWard">
+    <End Role="SubDivision" Type="Self.SubDivision" Multiplicity="1" />
+    <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubDivision">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ward">
+        <PropertyRef Name="SubDivision_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TownSubDivision">
+    <End Role="Town" Type="Self.Town" Multiplicity="1" />
+    <End Role="SubDivision" Type="Self.SubDivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubDivision">
+        <PropertyRef Name="Town_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RTSDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="accountDetails" EntityType="Self.accountDetail" />
+    <EntitySet Name="AFIs" EntityType="Self.AFI" />
+    <EntitySet Name="appUsers" EntityType="Self.appUser" />
+    <EntitySet Name="SubDivisions" EntityType="Self.SubDivision" />
+    <EntitySet Name="Towns" EntityType="Self.Town" />
+    <EntitySet Name="Wards" EntityType="Self.Ward" />
+    <AssociationSet Name="FK__accountDe__accou__5FB337D6" Association="Self.FK__accountDe__accou__5FB337D6">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="accountDetail" EntitySet="accountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WardAccount" Association="Self.FK_WardAccount">
+      <End Role="Ward" EntitySet="Wards" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="Self.FK__appUser__afi_id__17036CC0">
+      <End Role="AFI" EntitySet="AFIs" />
+      <End Role="appUser" EntitySet="appUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ward__AFI_Id__5AEE82B9" Association="Self.FK__Ward__AFI_Id__5AEE82B9">
+      <End Role="AFI" EntitySet="AFIs" />
+      <End Role="Ward" EntitySet="Wards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubDivisionWard" Association="Self.FK_SubDivisionWard">
+      <End Role="SubDivision" EntitySet="SubDivisions" />
+      <End Role="Ward" EntitySet="Wards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TownSubDivision" Association="Self.FK_TownSubDivision">
+      <End Role="Town" EntitySet="Towns" />
+      <End Role="SubDivision" EntitySet="SubDivisions" />
+    </AssociationSet>
+    <EntitySet Name="Tokens" EntityType="RTSDBModel.Token" />
+  </EntityContainer>
+  <EntityType Name="Token">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

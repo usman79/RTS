@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Net.Http;
 using System.Net;
 using System.Web.Http.Controllers;
+using MobileApi.HelperClasses;
 
 namespace MobileApi.HelperClasses
 {
@@ -18,7 +19,7 @@ namespace MobileApi.HelperClasses
         public override void OnAuthorization(HttpActionContext context)
         {
             var requestScope = context.Request.GetDependencyScope();
-            //var tokenManager = requestScope.GetService(typeof(ITokenManager)) as ITokenManager;
+            TokenManager tokenManager = new TokenManager();
 
             bool IsTokenValidated = false;
             IEnumerable<string> listVals = null;
@@ -26,10 +27,14 @@ namespace MobileApi.HelperClasses
 
             if (listVals != null && listVals.Count() > 0)
             {
-                //if (!tokenManager.VerifyToken(listVals.FirstOrDefault()))
-                //{
-                //    IsTokenValidated = false;
-                //}
+                if (!tokenManager.VerifyToken(listVals.FirstOrDefault()))
+                {
+                    IsTokenValidated = false;
+                }
+                else if (tokenManager.VerifyToken(listVals.FirstOrDefault()))
+                {
+                    IsTokenValidated = true;
+                }
             }
 
            

@@ -20,7 +20,6 @@
     <EntitySetMapping Name="AFIs">
       <EntityTypeMapping TypeName="RTSDBModel.AFI">
         <MappingFragment StoreEntitySet="AFI">
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="ticket" ColumnName="ticket" />
@@ -85,6 +84,18 @@
           <ScalarProperty Name="token" ColumnName="token" />
           <ScalarProperty Name="token_expire_date" ColumnName="token_expire_date" />
           <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appUsers">
+      <EntityTypeMapping TypeName="RTSDBModel.appUser">
+        <MappingFragment StoreEntitySet="appUser">
+          <ScalarProperty Name="rfi_id" ColumnName="rfi_id" />
+          <ScalarProperty Name="afi_id" ColumnName="afi_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

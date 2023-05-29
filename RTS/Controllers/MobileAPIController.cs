@@ -5,12 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using RTS.Models;
 using Newtonsoft.Json;
-using RTS.HelperClasses;
+ 
 
 namespace RTS.Controllers
 {
 
-    [Authorize]
+    // [Authorize]
     public class MobileAPIController : Controller
     {
         private RTSDBEntities db = new RTSDBEntities();
@@ -19,40 +19,36 @@ namespace RTS.Controllers
         {
             return View();
         }
-        public ActionResult appLogin(int ticket, string password)
+        public ActionResult appLogin(string ticket, string password)
         {
 
-            var afi = db.AFIs.FirstOrDefault(x => x.ticket == ticket && x.password == password);
+            var user = db.appUsers.FirstOrDefault(x => x.ticket == ticket && x.password == password);
+            // var afi = user.AFI;
 
-            
-          
-            if (afi != null)
+
+            if (user != null)
             {
 
-                AFI a = new AFI();
-                a.ticket =afi.ticket;
-                a.name=afi.name;
-                a.phone=afi.phone;
-                a.Wards=afi.Wards.Select(x=>new Ward {Id= x.Id,ward_desc=x.ward_desc}).ToList();
+                int a = user.id;
                 return Json(a, JsonRequestBehavior.AllowGet);
             }
-          
+
             else
             {
                 return Json("Wrong Ticket Or Password", JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult getWardNumbers(int? wardId)
+        public ActionResult getWardDetail(int? wardId)
         {
-            List< numbers> list= new List<numbers>();
+            List<numbers> list = new List<numbers>();
 
-             
-            for(int i = 0; i < 6; i++)
+
+            for (int i = 0; i < 6; i++)
             {
                 list.Add(new numbers());
             }
             Ward w = db.Wards.FirstOrDefault(x => x.Id == wardId);
-            if (w!=null &&w.Accounts.Count > 0)
+            if (w != null && w.Accounts.Count > 0)
             {
                 foreach (var account in w.Accounts)
                 {
@@ -67,7 +63,7 @@ namespace RTS.Controllers
                         list[2].value = list[2].value + 1;
                         list[3].label = "Pending Amount";
                         list[3].value = list[1].value + account.amount_due;
- 
+
                     }
                     else if (account.status == "r")
                     {
@@ -86,26 +82,35 @@ namespace RTS.Controllers
         }
         public ActionResult getWards(int userId)
         {
-            
-            var wards = db.Wards.Where(x => x.AFI_Id == userId ).Select(x => new
-            {
-                title = x.ward_desc,
-                Id = x.Id,
-                
-                
-            }).ToList();
-            if (wards.Count > 0)
-            {
+            var user = db.appUsers.FirstOrDefault(x => x.id == userId);
 
-                return Json(wards, JsonRequestBehavior.AllowGet);
+            if (user.role == "afi")
+            {
+                var wards = db.Wards.Where(x => x.AFI_Id == user.afi_id).Select(x => new
+                {
+                    title = x.ward_desc,
+                    Id = x.Id,
+
+
+                }).ToList();
+                if (wards != null)
+                {
+
+                    return Json(wards, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json("No Wards Found ", JsonRequestBehavior.AllowGet);
+                }
             }
+
 
             else
             {
                 return Json("No Wards Found ", JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult getAccounts(int wardId)
+        public ActionResult getWardAccounts(int wardId)
         {
             var list2 = db.Accounts.Where(x => x.Ward_Id == wardId && x.status == "n");
             var list = db.Accounts.Where(x => x.Ward_Id == wardId && x.status == "n").Select(x => new
@@ -117,9 +122,9 @@ namespace RTS.Controllers
                 longitude = x.longitude,
                 address = x.address
             }).ToList();
-            if(list.Count>0)
+            if (list.Count > 0)
             {
-               
+
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
 

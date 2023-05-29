@@ -18,6 +18,8 @@
         <AssociationConnector Association="RTSDBModel.FK__accountDe__accou__5FB337D6" />
         <EntityTypeShape EntityType="RTSDBModel.Token" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="RTSDBModel.userToken" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="RTSDBModel.appUser" Width="1.5" PointX="7.75" PointY="8" />
+        <AssociationConnector Association="RTSDBModel.FK__appUser__afi_id__17036CC0" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

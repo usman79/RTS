@@ -30,7 +30,8 @@ namespace RTS.Models
         public string address { get; set; }
         public int walk_sort { get; set; }
         public int property_no { get; set; }
-    
+
+       
         public virtual Ward Ward { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<accountDetail> accountDetails { get; set; }

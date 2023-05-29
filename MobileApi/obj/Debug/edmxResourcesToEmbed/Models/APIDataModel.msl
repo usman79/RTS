@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RTSDBModelStoreContainer" CdmEntityContainer="RTSDBEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="RTSDBModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="amount_due" ColumnName="amount_due" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="Ward_Id" ColumnName="Ward_Id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="walk_sort" ColumnName="walk_sort" />
+          <ScalarProperty Name="property_no" ColumnName="property_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountDetails">
+      <EntityTypeMapping TypeName="RTSDBModel.accountDetail">
+        <MappingFragment StoreEntitySet="accountDetail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="visit_date" ColumnName="visit_date" />
+          <ScalarProperty Name="visit_lat" ColumnName="visit_lat" />
+          <ScalarProperty Name="visit_long" ColumnName="visit_long" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="is_assigned" ColumnName="is_assigned" />
+          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AFIs">
+      <EntityTypeMapping TypeName="RTSDBModel.AFI">
+        <MappingFragment StoreEntitySet="AFI">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appUsers">
+      <EntityTypeMapping TypeName="RTSDBModel.appUser">
+        <MappingFragment StoreEntitySet="appUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="afi_id" ColumnName="afi_id" />
+          <ScalarProperty Name="rfi_id" ColumnName="rfi_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubDivisions">
+      <EntityTypeMapping TypeName="RTSDBModel.SubDivision">
+        <MappingFragment StoreEntitySet="SubDivision">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="subdivision_desc" ColumnName="subdivision_desc" />
+          <ScalarProperty Name="Town_Id" ColumnName="Town_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="RTSDBModel.Town">
+        <MappingFragment StoreEntitySet="Town">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="town_desc" ColumnName="town_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wards">
+      <EntityTypeMapping TypeName="RTSDBModel.Ward">
+        <MappingFragment StoreEntitySet="Ward">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ward_desc" ColumnName="ward_desc" />
+          <ScalarProperty Name="SubDivision_Id" ColumnName="SubDivision_Id" />
+          <ScalarProperty Name="AFI_Id" ColumnName="AFI_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="RTSDBModel.Token">
+        <MappingFragment StoreEntitySet="Token">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

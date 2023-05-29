@@ -18,6 +18,7 @@ namespace RTS.Models
         public AFI()
         {
             this.Wards = new HashSet<Ward>();
+            this.appUsers = new HashSet<appUser>();
         }
     
         public int Id { get; set; }
@@ -26,9 +27,10 @@ namespace RTS.Models
         public string phone { get; set; }
         public double longitude { get; set; }
         public double latitude { get; set; }
-        public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ward> Wards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<appUser> appUsers { get; set; }
     }
 }

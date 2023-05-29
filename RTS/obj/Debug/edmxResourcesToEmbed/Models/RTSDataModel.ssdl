@@ -38,7 +38,17 @@
     <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="longitude" Type="float" Nullable="false" />
     <Property Name="latitude" Type="float" Nullable="false" />
-    <Property Name="password" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="appUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ticket" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="afi_id" Type="int" />
+    <Property Name="rfi_id" Type="int" />
   </EntityType>
   <EntityType Name="SubDivision">
     <Key>
@@ -98,6 +108,18 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__appUser__afi_id__17036CC0">
+    <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
+    <End Role="appUser" Type="Self.appUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appUser">
+        <PropertyRef Name="afi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Ward__AFI_Id__5AEE82B9">
     <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
     <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
@@ -150,6 +172,7 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="accountDetail" EntityType="Self.accountDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AFI" EntityType="Self.AFI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appUser" EntityType="Self.appUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubDivision" EntityType="Self.SubDivision" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
@@ -169,6 +192,10 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
     <AssociationSet Name="FK__accountDe__accou__5FB337D6" Association="Self.FK__accountDe__accou__5FB337D6">
       <End Role="Account" EntitySet="Account" />
       <End Role="accountDetail" EntitySet="accountDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="Self.FK__appUser__afi_id__17036CC0">
+      <End Role="AFI" EntitySet="AFI" />
+      <End Role="appUser" EntitySet="appUser" />
     </AssociationSet>
     <AssociationSet Name="FK__Ward__AFI_Id__5AEE82B9" Association="Self.FK__Ward__AFI_Id__5AEE82B9">
       <End Role="AFI" EntitySet="AFI" />

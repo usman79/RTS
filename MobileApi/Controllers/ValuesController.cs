@@ -5,12 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using MobileApi.Models;
+ 
 namespace MobileApi.Controllers
 {
-    [TokenAuthenticationFilter]
+   
     public class ValuesController : ApiController
     {
+         
         // GET api/values
         public IEnumerable<string> Get()
         {
@@ -38,4 +40,6 @@ namespace MobileApi.Controllers
         {
         }
     }
+
+   
 }

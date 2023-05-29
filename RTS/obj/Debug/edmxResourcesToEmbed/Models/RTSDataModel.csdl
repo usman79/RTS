@@ -27,8 +27,8 @@
     <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="longitude" Type="Double" Nullable="false" />
     <Property Name="latitude" Type="Double" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Wards" Relationship="RTSDBModel.FK__Ward__AFI_Id__5AEE82B9" FromRole="AFI" ToRole="Ward" />
+    <NavigationProperty Name="appUsers" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="AFI" ToRole="appUser" />
   </EntityType>
   <EntityType Name="SubDivision">
     <Key>
@@ -125,6 +125,11 @@
     </AssociationSet>
     <EntitySet Name="Tokens" EntityType="RTSDBModel.Token" />
     <EntitySet Name="userTokens" EntityType="RTSDBModel.userToken" />
+    <EntitySet Name="appUsers" EntityType="RTSDBModel.appUser" />
+    <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="RTSDBModel.FK__appUser__afi_id__17036CC0">
+      <End Role="AFI" EntitySet="AFIs" />
+      <End Role="appUser" EntitySet="appUsers" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK__Ward__AFI_Id__5AEE82B9">
     <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
@@ -182,4 +187,28 @@
     <Property Name="token_expire_date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="token" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="appUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ticket" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="afi_id" Type="Int32" />
+    <Property Name="rfi_id" Type="Int32" />
+    <NavigationProperty Name="AFI" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="appUser" ToRole="AFI" />
+  </EntityType>
+  <Association Name="FK__appUser__afi_id__17036CC0">
+    <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
+    <End Type="RTSDBModel.appUser" Role="appUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appUser">
+        <PropertyRef Name="afi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

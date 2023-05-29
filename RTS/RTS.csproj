@@ -551,7 +551,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AFIsController.cs" />
-    <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileAPIController.cs" />
     <Compile Include="Controllers\SubDivisionsController.cs" />
@@ -561,9 +560,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HelperClasses\ITokenManager.cs" />
-    <Compile Include="HelperClasses\TokenAuthenticationFilter.cs" />
-    <Compile Include="HelperClasses\TokenManager.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
@@ -571,6 +567,9 @@
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AFI.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\appUser.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RTSDataModel.Context.cs">

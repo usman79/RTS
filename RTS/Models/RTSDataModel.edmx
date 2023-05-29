@@ -43,7 +43,17 @@
           <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="longitude" Type="float" Nullable="false" />
           <Property Name="latitude" Type="float" Nullable="false" />
-          <Property Name="password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="appUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ticket" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="afi_id" Type="int" />
+          <Property Name="rfi_id" Type="int" />
         </EntityType>
         <EntityType Name="SubDivision">
           <Key>
@@ -103,6 +113,18 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__appUser__afi_id__17036CC0">
+          <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
+          <End Role="appUser" Type="Self.appUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AFI">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="appUser">
+              <PropertyRef Name="afi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Ward__AFI_Id__5AEE82B9">
           <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
           <End Role="Ward" Type="Self.Ward" Multiplicity="*" />
@@ -155,6 +177,7 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accountDetail" EntityType="Self.accountDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AFI" EntityType="Self.AFI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appUser" EntityType="Self.appUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubDivision" EntityType="Self.SubDivision" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
@@ -174,6 +197,10 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           <AssociationSet Name="FK__accountDe__accou__5FB337D6" Association="Self.FK__accountDe__accou__5FB337D6">
             <End Role="Account" EntitySet="Account" />
             <End Role="accountDetail" EntitySet="accountDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="Self.FK__appUser__afi_id__17036CC0">
+            <End Role="AFI" EntitySet="AFI" />
+            <End Role="appUser" EntitySet="appUser" />
           </AssociationSet>
           <AssociationSet Name="FK__Ward__AFI_Id__5AEE82B9" Association="Self.FK__Ward__AFI_Id__5AEE82B9">
             <End Role="AFI" EntitySet="AFI" />
@@ -223,8 +250,8 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="longitude" Type="Double" Nullable="false" />
           <Property Name="latitude" Type="Double" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Wards" Relationship="RTSDBModel.FK__Ward__AFI_Id__5AEE82B9" FromRole="AFI" ToRole="Ward" />
+          <NavigationProperty Name="appUsers" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="AFI" ToRole="appUser" />
         </EntityType>
         <EntityType Name="SubDivision">
           <Key>
@@ -321,6 +348,11 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           </AssociationSet>
           <EntitySet Name="Tokens" EntityType="RTSDBModel.Token" />
           <EntitySet Name="userTokens" EntityType="RTSDBModel.userToken" />
+          <EntitySet Name="appUsers" EntityType="RTSDBModel.appUser" />
+          <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="RTSDBModel.FK__appUser__afi_id__17036CC0">
+            <End Role="AFI" EntitySet="AFIs" />
+            <End Role="appUser" EntitySet="appUsers" />
+          </AssociationSet>
           </EntityContainer>
         <Association Name="FK__Ward__AFI_Id__5AEE82B9">
           <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
@@ -378,6 +410,30 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           <Property Name="token_expire_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="token" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="appUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ticket" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="afi_id" Type="Int32" />
+          <Property Name="rfi_id" Type="Int32" />
+          <NavigationProperty Name="AFI" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="appUser" ToRole="AFI" />
+        </EntityType>
+        <Association Name="FK__appUser__afi_id__17036CC0">
+          <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
+          <End Type="RTSDBModel.appUser" Role="appUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AFI">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="appUser">
+              <PropertyRef Name="afi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -403,7 +459,6 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
           <EntitySetMapping Name="AFIs">
             <EntityTypeMapping TypeName="RTSDBModel.AFI">
               <MappingFragment StoreEntitySet="AFI">
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="ticket" ColumnName="ticket" />
@@ -468,6 +523,18 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
                 <ScalarProperty Name="token" ColumnName="token" />
                 <ScalarProperty Name="token_expire_date" ColumnName="token_expire_date" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appUsers">
+            <EntityTypeMapping TypeName="RTSDBModel.appUser">
+              <MappingFragment StoreEntitySet="appUser">
+                <ScalarProperty Name="rfi_id" ColumnName="rfi_id" />
+                <ScalarProperty Name="afi_id" ColumnName="afi_id" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
