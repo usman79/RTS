@@ -31,8 +31,12 @@ namespace RTS.Models
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<accountDetail> accountDetails { get; set; }
-        public virtual DbSet<Token> Tokens { get; set; }
-        public virtual DbSet<userToken> userTokens { get; set; }
         public virtual DbSet<appUser> appUsers { get; set; }
+        public virtual DbSet<accountStatu> accountStatus { get; set; }
+        public virtual DbSet<webuser> webusers { get; set; }
+        public virtual DbSet<ConSummary> ConSummaries { get; set; }
+        public virtual DbSet<RecoveryProgress> RecoveryProgresses { get; set; }
+        public virtual DbSet<DefaulterPayment> DefaulterPayments { get; set; }
+        public virtual DbSet<marquee> marquees { get; set; }
     }
 }

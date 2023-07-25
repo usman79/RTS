@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RTS.Models.Town>
+﻿@model List<RTS.Models.Town>
 
 @{
     ViewBag.Title = "TownsIndex";
@@ -26,8 +26,9 @@
                             @Html.DisplayFor(modelItem => item.town_desc)
                         </td>
                         <td>
+                            @Html.ActionLink("AFI", "GetAfi", new { id = item.Id }) |
                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    
+
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                         </td>
                     </tr>

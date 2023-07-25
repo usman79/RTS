@@ -4,13 +4,29 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="RTSDBModel.Account">
         <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="property_no" ColumnName="property_no" />
+          <ScalarProperty Name="visits" ColumnName="visits" />
+          <ScalarProperty Name="nextVisit_date" ColumnName="nextVisit_date" />
+          <ScalarProperty Name="partialPayment" ColumnName="partialPayment" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
+          <ScalarProperty Name="is_assigned" ColumnName="is_assigned" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="visit_long" ColumnName="visit_long" />
+          <ScalarProperty Name="visit_lat" ColumnName="visit_lat" />
+          <ScalarProperty Name="visit_date" ColumnName="visit_date" />
+          <ScalarProperty Name="propertyNo" ColumnName="propertyNo" />
+          <ScalarProperty Name="Current_Demand" ColumnName="Current_Demand" />
+          <ScalarProperty Name="Connection_Date" ColumnName="Connection_Date" />
+          <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="Account_No" ColumnName="Account_No" />
+          <ScalarProperty Name="last_payment_date" ColumnName="last_payment_date" />
+          <ScalarProperty Name="last_payment" ColumnName="last_payment" />
+          <ScalarProperty Name="Consumer_Name" ColumnName="Consumer_Name" />
           <ScalarProperty Name="walk_sort" ColumnName="walk_sort" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="amount_due" ColumnName="amount_due" />
-          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="longitude" ColumnName="longitude" />
           <ScalarProperty Name="latitude" ColumnName="latitude" />
           <ScalarProperty Name="Ward_Id" ColumnName="Ward_Id" />
@@ -20,7 +36,6 @@
     <EntitySetMapping Name="AFIs">
       <EntityTypeMapping TypeName="RTSDBModel.AFI">
         <MappingFragment StoreEntitySet="AFI">
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="ticket" ColumnName="ticket" />
@@ -60,8 +75,9 @@
     <EntitySetMapping Name="accountDetails">
       <EntityTypeMapping TypeName="RTSDBModel.accountDetail">
         <MappingFragment StoreEntitySet="accountDetail">
-          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
-          <ScalarProperty Name="is_assigned" ColumnName="is_assigned" />
+          <ScalarProperty Name="installment_date" ColumnName="installment_date" />
+          <ScalarProperty Name="is_installment" ColumnName="is_installment" />
+          <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
           <ScalarProperty Name="remarks" ColumnName="remarks" />
           <ScalarProperty Name="visit_long" ColumnName="visit_long" />
@@ -71,20 +87,89 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tokens">
-      <EntityTypeMapping TypeName="RTSDBModel.Token">
-        <MappingFragment StoreEntitySet="Token">
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
+    <EntitySetMapping Name="appUsers">
+      <EntityTypeMapping TypeName="RTSDBModel.appUser">
+        <MappingFragment StoreEntitySet="appUser">
+          <ScalarProperty Name="rfi_id" ColumnName="rfi_id" />
+          <ScalarProperty Name="afi_id" ColumnName="afi_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="userTokens">
-      <EntityTypeMapping TypeName="RTSDBModel.userToken">
-        <MappingFragment StoreEntitySet="userTokens">
-          <ScalarProperty Name="token" ColumnName="token" />
-          <ScalarProperty Name="token_expire_date" ColumnName="token_expire_date" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
+    <EntitySetMapping Name="accountStatus">
+      <EntityTypeMapping TypeName="RTSDBModel.accountStatu">
+        <MappingFragment StoreEntitySet="accountStatus">
+          <ScalarProperty Name="isPayment" ColumnName="isPayment" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webusers">
+      <EntityTypeMapping TypeName="RTSDBModel.webuser">
+        <MappingFragment StoreEntitySet="webuser">
+          <ScalarProperty Name="officeId" ColumnName="officeId" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConSummaries">
+      <EntityTypeMapping TypeName="RTSDBModel.ConSummary">
+        <MappingFragment StoreEntitySet="ConSummary">
+          <ScalarProperty Name="aquifer_sewer" ColumnName="aquifer_sewer" />
+          <ScalarProperty Name="aquifer_water" ColumnName="aquifer_water" />
+          <ScalarProperty Name="water_and_sewer" ColumnName="water_and_sewer" />
+          <ScalarProperty Name="sewer" ColumnName="sewer" />
+          <ScalarProperty Name="water" ColumnName="water" />
+          <ScalarProperty Name="average" ColumnName="average" />
+          <ScalarProperty Name="reading" ColumnName="reading" />
+          <ScalarProperty Name="cheritable" ColumnName="cheritable" />
+          <ScalarProperty Name="commercial" ColumnName="commercial" />
+          <ScalarProperty Name="domestic" ColumnName="domestic" />
+          <ScalarProperty Name="townid" ColumnName="townid" />
+          <ScalarProperty Name="entrdate" ColumnName="entrdate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecoveryProgresses">
+      <EntityTypeMapping TypeName="RTSDBModel.RecoveryProgress">
+        <MappingFragment StoreEntitySet="RecoveryProgress">
+          <ScalarProperty Name="accountPaid" ColumnName="accountPaid" />
+          <ScalarProperty Name="townId" ColumnName="townId" />
+          <ScalarProperty Name="MisUse" ColumnName="MisUse" />
+          <ScalarProperty Name="UCR" ColumnName="UCR" />
+          <ScalarProperty Name="NCR" ColumnName="NCR" />
+          <ScalarProperty Name="recovered" ColumnName="recovered" />
+          <ScalarProperty Name="target" ColumnName="target" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefaulterPayments">
+      <EntityTypeMapping TypeName="RTSDBModel.DefaulterPayment">
+        <MappingFragment StoreEntitySet="DefaulterPayment">
+          <ScalarProperty Name="amountRecieved" ColumnName="amountRecieved" />
+          <ScalarProperty Name="arears" ColumnName="arears" />
+          <ScalarProperty Name="townId" ColumnName="townId" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="marquees">
+      <EntityTypeMapping TypeName="RTSDBModel.marquee">
+        <MappingFragment StoreEntitySet="marquee">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

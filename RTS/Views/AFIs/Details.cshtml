@@ -79,7 +79,7 @@
                                     <div class="col-lg-9 col-md-8">@Html.DisplayFor(model => model.ticket)</div>
                                 </div>
 
-                                <div class="row">
+                                @*<div class="row">
                                     <div class="col-lg-3 col-md-4 label">Town</div>
                                     <div class="col-lg-9 col-md-8">@Html.DisplayFor(model => model.Ward.SubDivision.Town.town_desc)</div>
                                 </div>
@@ -87,12 +87,12 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Sub Division</div>
                                     <div class="col-lg-9 col-md-8">@Html.DisplayFor(model => model.Ward.SubDivision.subdivision_desc)</div>
-                                </div>
+                                </div>*@
 
-                                <div class="row">
+                                @*<div class="row">
                                     <div class="col-lg-3 col-md-4 label">Ward</div>
                                     <div class="col-lg-9 col-md-8">@Html.DisplayFor(model => model.Ward.ward_desc)</div>
-                                </div>
+                                </div>*@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Phone</div>
@@ -246,11 +246,11 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Ward.ward_desc)
+                    Html.DisplayNameFor(model => model.Ward.ward_desc)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Ward.ward_desc)
+                    Html.DisplayFor(model => model.Ward.ward_desc)
                 </dd>
 
             </dl>

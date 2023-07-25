@@ -48,7 +48,7 @@ namespace RTS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,ticket,phone,longitude,latitude,Ward_Id")] AFI aFI)
+        public ActionResult Create([Bind(Include = "Id,name,ticket,phone,longitude,latitude ")] AFI aFI)
         {
             if (ModelState.IsValid)
             {

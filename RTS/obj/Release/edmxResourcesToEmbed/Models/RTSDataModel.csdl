@@ -5,9 +5,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="amount_due" Type="Int32" Nullable="false" />
-    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="longitude" Type="Double" Nullable="false" />
     <Property Name="latitude" Type="Double" Nullable="false" />
     <Property Name="Ward_Id" Type="Int32" Nullable="false" />
@@ -15,7 +13,26 @@
     <NavigationProperty Name="accountDetails" Relationship="RTSDBModel.FK__accountDe__accou__5FB337D6" FromRole="Account" ToRole="accountDetail" />
     <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="walk_sort" Type="Int32" Nullable="false" />
-    <Property Name="property_no" Type="Int32" Nullable="false" />
+    <Property Name="Consumer_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="last_payment" Type="Int32" />
+    <Property Name="last_payment_date" Type="DateTime" Precision="0" />
+    <Property Name="Account_No" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="statusId" Type="Int32" Nullable="false" />
+    <Property Name="Account_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Connection_Date" Type="DateTime" Precision="0" />
+    <Property Name="Current_Demand" Type="Int32" />
+    <Property Name="propertyNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="visit_date" Type="DateTime" Precision="3" />
+    <Property Name="visit_lat" Type="Double" />
+    <Property Name="visit_long" Type="Double" />
+    <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_assigned" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="assignment_date" Type="DateTime" Precision="0" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="partialPayment" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="accountStatu" Relationship="RTSDBModel.FK__Account__statusI__55F4C372" FromRole="Account" ToRole="accountStatu" />
+    <Property Name="nextVisit_date" Type="DateTime" Precision="0" />
+    <Property Name="visits" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="AFI">
     <Key>
@@ -27,8 +44,8 @@
     <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="longitude" Type="Double" Nullable="false" />
     <Property Name="latitude" Type="Double" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Wards" Relationship="RTSDBModel.FK__Ward__AFI_Id__5AEE82B9" FromRole="AFI" ToRole="Ward" />
+    <NavigationProperty Name="appUsers" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="AFI" ToRole="appUser" />
   </EntityType>
   <EntityType Name="SubDivision">
     <Key>
@@ -47,6 +64,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="town_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="SubDivisions" Relationship="Self.FK_TownSubDivision" FromRole="Town" ToRole="SubDivision" />
+    <NavigationProperty Name="ConSummaries" Relationship="RTSDBModel.FK__ConSummar__towni__00750D23" FromRole="Town" ToRole="ConSummary" />
+    <NavigationProperty Name="RecoveryProgresses" Relationship="RTSDBModel.FK__RecoveryP__townI__035179CE" FromRole="Town" ToRole="RecoveryProgress" />
+    <NavigationProperty Name="DefaulterPayments" Relationship="RTSDBModel.FK__Defaulter__townI__60C757A0" FromRole="Town" ToRole="DefaulterPayment" />
   </EntityType>
   <EntityType Name="Ward">
     <Key>
@@ -123,8 +143,33 @@
       <End Role="Account" EntitySet="Accounts" />
       <End Role="accountDetail" EntitySet="accountDetails" />
     </AssociationSet>
-    <EntitySet Name="Tokens" EntityType="RTSDBModel.Token" />
-    <EntitySet Name="userTokens" EntityType="RTSDBModel.userToken" />
+    <EntitySet Name="appUsers" EntityType="RTSDBModel.appUser" />
+    <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="RTSDBModel.FK__appUser__afi_id__17036CC0">
+      <End Role="AFI" EntitySet="AFIs" />
+      <End Role="appUser" EntitySet="appUsers" />
+    </AssociationSet>
+    <EntitySet Name="accountStatus" EntityType="RTSDBModel.accountStatu" />
+    <AssociationSet Name="FK__Account__statusI__55F4C372" Association="RTSDBModel.FK__Account__statusI__55F4C372">
+      <End Role="accountStatu" EntitySet="accountStatus" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <EntitySet Name="webusers" EntityType="RTSDBModel.webuser" />
+    <EntitySet Name="ConSummaries" EntityType="RTSDBModel.ConSummary" />
+    <AssociationSet Name="FK__ConSummar__towni__00750D23" Association="RTSDBModel.FK__ConSummar__towni__00750D23">
+      <End Role="Town" EntitySet="Towns" />
+      <End Role="ConSummary" EntitySet="ConSummaries" />
+    </AssociationSet>
+    <EntitySet Name="RecoveryProgresses" EntityType="RTSDBModel.RecoveryProgress" />
+    <AssociationSet Name="FK__RecoveryP__townI__035179CE" Association="RTSDBModel.FK__RecoveryP__townI__035179CE">
+      <End Role="Town" EntitySet="Towns" />
+      <End Role="RecoveryProgress" EntitySet="RecoveryProgresses" />
+    </AssociationSet>
+    <EntitySet Name="DefaulterPayments" EntityType="RTSDBModel.DefaulterPayment" />
+    <AssociationSet Name="FK__Defaulter__townI__60C757A0" Association="RTSDBModel.FK__Defaulter__townI__60C757A0">
+      <End Role="Town" EntitySet="Towns" />
+      <End Role="DefaulterPayment" EntitySet="DefaulterPayments" />
+    </AssociationSet>
+    <EntitySet Name="marquees" EntityType="RTSDBModel.marquee" />
   </EntityContainer>
   <Association Name="FK__Ward__AFI_Id__5AEE82B9">
     <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
@@ -149,8 +194,9 @@
     <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="accountId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Account" Relationship="RTSDBModel.FK__accountDe__accou__5FB337D6" FromRole="accountDetail" ToRole="Account" />
-    <Property Name="is_assigned" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="assignment_date" Type="DateTime" Precision="0" />
+    <Property Name="paymentAmount" Type="Int32" Nullable="false" />
+    <Property Name="is_installment" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="installment_date" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="FK__accountDe__accou__5FB337D6">
     <End Type="RTSDBModel.Account" Role="Account" Multiplicity="1" />
@@ -164,22 +210,148 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Token">
+  <EntityType Name="appUser">
     <Key>
-      <PropertyRef Name="Value" />
-      <PropertyRef Name="ExpiryDate" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ticket" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="afi_id" Type="Int32" />
+    <Property Name="rfi_id" Type="Int32" />
+    <NavigationProperty Name="AFI" Relationship="RTSDBModel.FK__appUser__afi_id__17036CC0" FromRole="appUser" ToRole="AFI" />
   </EntityType>
-  <EntityType Name="userToken">
+  <Association Name="FK__appUser__afi_id__17036CC0">
+    <End Type="RTSDBModel.AFI" Role="AFI" Multiplicity="0..1" />
+    <End Type="RTSDBModel.appUser" Role="appUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appUser">
+        <PropertyRef Name="afi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="accountStatu">
     <Key>
-      <PropertyRef Name="userId" />
-      <PropertyRef Name="token_expire_date" />
-      <PropertyRef Name="token" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="userId" Type="Int32" Nullable="false" />
-    <Property Name="token_expire_date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="token" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isPayment" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="RTSDBModel.FK__Account__statusI__55F4C372" FromRole="accountStatu" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK__Account__statusI__55F4C372">
+    <End Type="RTSDBModel.accountStatu" Role="accountStatu" Multiplicity="1" />
+    <End Type="RTSDBModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountStatu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="webuser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ticket" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="officeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ConSummary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entrdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="townid" Type="Int32" Nullable="false" />
+    <Property Name="domestic" Type="Int32" Nullable="false" />
+    <Property Name="commercial" Type="Int32" Nullable="false" />
+    <Property Name="cheritable" Type="Int32" Nullable="false" />
+    <Property Name="reading" Type="Int32" Nullable="false" />
+    <Property Name="average" Type="Int32" Nullable="false" />
+    <Property Name="water" Type="Int32" Nullable="false" />
+    <Property Name="sewer" Type="Int32" Nullable="false" />
+    <Property Name="water_and_sewer" Type="Int32" Nullable="false" />
+    <Property Name="aquifer_water" Type="Int32" Nullable="false" />
+    <Property Name="aquifer_sewer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Town" Relationship="RTSDBModel.FK__ConSummar__towni__00750D23" FromRole="ConSummary" ToRole="Town" />
+  </EntityType>
+  <Association Name="FK__ConSummar__towni__00750D23">
+    <End Type="RTSDBModel.Town" Role="Town" Multiplicity="1" />
+    <End Type="RTSDBModel.ConSummary" Role="ConSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConSummary">
+        <PropertyRef Name="townid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RecoveryProgress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="month" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="isComplete" Type="Boolean" Nullable="false" />
+    <Property Name="target" Type="Int32" Nullable="false" />
+    <Property Name="recovered" Type="Int32" Nullable="false" />
+    <Property Name="NCR" Type="Int32" Nullable="false" />
+    <Property Name="UCR" Type="Int32" Nullable="false" />
+    <Property Name="MisUse" Type="Int32" Nullable="false" />
+    <Property Name="townId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Town" Relationship="RTSDBModel.FK__RecoveryP__townI__035179CE" FromRole="RecoveryProgress" ToRole="Town" />
+    <Property Name="accountPaid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__RecoveryP__townI__035179CE">
+    <End Type="RTSDBModel.Town" Role="Town" Multiplicity="1" />
+    <End Type="RTSDBModel.RecoveryProgress" Role="RecoveryProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecoveryProgress">
+        <PropertyRef Name="townId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DefaulterPayment">
+    <Key>
+      <PropertyRef Name="accountNo" />
+    </Key>
+    <Property Name="accountNo" Type="Int32" Nullable="false" />
+    <Property Name="townId" Type="Int32" Nullable="false" />
+    <Property Name="arears" Type="Int32" Nullable="false" />
+    <Property Name="amountRecieved" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Town" Relationship="RTSDBModel.FK__Defaulter__townI__60C757A0" FromRole="DefaulterPayment" ToRole="Town" />
+  </EntityType>
+  <Association Name="FK__Defaulter__townI__60C757A0">
+    <End Type="RTSDBModel.Town" Role="Town" Multiplicity="1" />
+    <End Type="RTSDBModel.DefaulterPayment" Role="DefaulterPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DefaulterPayment">
+        <PropertyRef Name="townId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="marquee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

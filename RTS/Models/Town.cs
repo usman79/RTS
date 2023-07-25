@@ -18,6 +18,9 @@ namespace RTS.Models
         public Town()
         {
             this.SubDivisions = new HashSet<SubDivision>();
+            this.ConSummaries = new HashSet<ConSummary>();
+            this.RecoveryProgresses = new HashSet<RecoveryProgress>();
+            this.DefaulterPayments = new HashSet<DefaulterPayment>();
         }
     
         public int Id { get; set; }
@@ -25,5 +28,11 @@ namespace RTS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubDivision> SubDivisions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConSummary> ConSummaries { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RecoveryProgress> RecoveryProgresses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DefaulterPayment> DefaulterPayments { get; set; }
     }
 }

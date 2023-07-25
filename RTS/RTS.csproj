@@ -546,13 +546,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AuthorizationFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AFIsController.cs" />
+    <Compile Include="Controllers\appUsersController.cs" />
+    <Compile Include="Controllers\ConSummariesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MobileAPIController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\marqueesController.cs" />
+    <Compile Include="Controllers\RecoveryProgressesController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SubDivisionsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TownsController.cs" />
@@ -566,10 +573,27 @@
     <Compile Include="Models\accountDetail.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\accountStatu.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AFI.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\appUser.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConSummary.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DefaulterPayment.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\defaulterTable.cs" />
+    <Compile Include="Models\marquee.cs">
+      <DependentUpon>RTSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecoveryDashboard.cs" />
+    <Compile Include="Models\RecoveryProgress.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RTSDataModel.Context.cs">
@@ -590,16 +614,13 @@
     <Compile Include="Models\SubDivision.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Token.cs">
-      <DependentUpon>RTSDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Town.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\userToken.cs">
+    <Compile Include="Models\Ward.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ward.cs">
+    <Compile Include="Models\webuser.cs">
       <DependentUpon>RTSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -829,10 +850,13 @@
     <Content Include="assets\vendor\tinymce\themes\silver\theme.min.js" />
     <Content Include="assets\vendor\tinymce\tinymce.js" />
     <Content Include="assets\vendor\tinymce\tinymce.min.js" />
+    <Content Include="Content\AIT.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\gop-logo.png" />
+    <Content Include="Content\WASA-logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -963,6 +987,38 @@
     <Content Include="Views\AFIs\Details.cshtml" />
     <Content Include="Views\AFIs\Edit.cshtml" />
     <Content Include="Views\AFIs\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Home\TownDashboard.cshtml" />
+    <Content Include="Views\Home\SubDivisionDashboard.cshtml" />
+    <Content Include="Views\Reports\DateReport.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Login\ChangePassword.cshtml" />
+    <Content Include="Views\appUsers\Create.cshtml" />
+    <Content Include="Views\appUsers\Delete.cshtml" />
+    <Content Include="Views\appUsers\Details.cshtml" />
+    <Content Include="Views\appUsers\Edit.cshtml" />
+    <Content Include="Views\appUsers\Index.cshtml" />
+    <Content Include="Views\Reports\DateReportFilter.cshtml" />
+    <Content Include="Views\ConSummaries\Create.cshtml" />
+    <Content Include="Views\ConSummaries\Delete.cshtml" />
+    <Content Include="Views\ConSummaries\Details.cshtml" />
+    <Content Include="Views\ConSummaries\Edit.cshtml" />
+    <Content Include="Views\ConSummaries\Index.cshtml" />
+    <Content Include="Views\RecoveryProgresses\Create.cshtml" />
+    <Content Include="Views\RecoveryProgresses\Delete.cshtml" />
+    <Content Include="Views\RecoveryProgresses\Details.cshtml" />
+    <Content Include="Views\RecoveryProgresses\Edit.cshtml" />
+    <Content Include="Views\RecoveryProgresses\Index.cshtml" />
+    <Content Include="Views\Home\recoveryDashboard.cshtml" />
+    <Content Include="Views\marquees\Create.cshtml" />
+    <Content Include="Views\marquees\Delete.cshtml" />
+    <Content Include="Views\marquees\Details.cshtml" />
+    <Content Include="Views\marquees\Edit.cshtml" />
+    <Content Include="Views\marquees\Index.cshtml" />
     <None Include="Views\Shared\myLayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -988,8 +1044,10 @@
     <Content Include="Views\SubDivisions\Index.cshtml" />
     <Content Include="Views\Wards\Create.cshtml" />
     <Content Include="Views\Wards\Delete.cshtml" />
+    <Content Include="Views\Wards\Details.cshtml" />
     <Content Include="Views\Wards\Edit.cshtml" />
     <Content Include="Views\Wards\Index.cshtml" />
+    <Content Include="Views\Towns\AFI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

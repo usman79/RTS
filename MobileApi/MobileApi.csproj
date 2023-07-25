@@ -194,6 +194,9 @@
     <Compile Include="Models\accountDetail.cs">
       <DependentUpon>APIDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\accountStatu.cs">
+      <DependentUpon>APIDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AFI.cs">
       <DependentUpon>APIDataModel.tt</DependentUpon>
     </Compile>

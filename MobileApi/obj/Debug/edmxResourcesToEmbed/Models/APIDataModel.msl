@@ -4,30 +4,47 @@
     <EntitySetMapping Name="Accounts">
       <EntityTypeMapping TypeName="RTSDBModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="visits" ColumnName="visits" />
+          <ScalarProperty Name="nextVisit_date" ColumnName="nextVisit_date" />
+          <ScalarProperty Name="partialPayment" ColumnName="partialPayment" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
+          <ScalarProperty Name="is_assigned" ColumnName="is_assigned" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="visit_long" ColumnName="visit_long" />
+          <ScalarProperty Name="visit_lat" ColumnName="visit_lat" />
+          <ScalarProperty Name="visit_date" ColumnName="visit_date" />
+          <ScalarProperty Name="propertyNo" ColumnName="propertyNo" />
+          <ScalarProperty Name="Current_Demand" ColumnName="Current_Demand" />
+          <ScalarProperty Name="Connection_Date" ColumnName="Connection_Date" />
+          <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="Account_No" ColumnName="Account_No" />
+          <ScalarProperty Name="Consumer_Name" ColumnName="Consumer_Name" />
+          <ScalarProperty Name="last_payment_date" ColumnName="last_payment_date" />
+          <ScalarProperty Name="last_payment" ColumnName="last_payment" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="amount_due" ColumnName="amount_due" />
-          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="longitude" ColumnName="longitude" />
           <ScalarProperty Name="latitude" ColumnName="latitude" />
           <ScalarProperty Name="Ward_Id" ColumnName="Ward_Id" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="walk_sort" ColumnName="walk_sort" />
-          <ScalarProperty Name="property_no" ColumnName="property_no" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="accountDetails">
       <EntityTypeMapping TypeName="RTSDBModel.accountDetail">
         <MappingFragment StoreEntitySet="accountDetail">
+          <ScalarProperty Name="installment_date" ColumnName="installment_date" />
+          <ScalarProperty Name="is_installment" ColumnName="is_installment" />
+          <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="visit_date" ColumnName="visit_date" />
           <ScalarProperty Name="visit_lat" ColumnName="visit_lat" />
           <ScalarProperty Name="visit_long" ColumnName="visit_long" />
           <ScalarProperty Name="remarks" ColumnName="remarks" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
-          <ScalarProperty Name="is_assigned" ColumnName="is_assigned" />
-          <ScalarProperty Name="assignment_date" ColumnName="assignment_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -88,6 +105,15 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
           <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accountStatus">
+      <EntityTypeMapping TypeName="RTSDBModel.accountStatu">
+        <MappingFragment StoreEntitySet="accountStatus">
+          <ScalarProperty Name="isPayment" ColumnName="isPayment" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

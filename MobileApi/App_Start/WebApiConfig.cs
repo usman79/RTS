@@ -12,19 +12,16 @@ namespace MobileApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            var container = UnityConfig.GetConfiguredContainer();
-
-            //...any other settings to be applied to container.
-
-            config.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
+          
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "{controller}/{action}/{id}",
+               defaults: new { id = RouteParameter.Optional }
+               
             );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter

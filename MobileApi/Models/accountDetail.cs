@@ -9,6 +9,7 @@
 
 namespace MobileApi.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -20,9 +21,10 @@ namespace MobileApi.Models
         public Nullable<double> visit_long { get; set; }
         public string remarks { get; set; }
         public int accountId { get; set; }
-        public string is_assigned { get; set; }
-        public Nullable<System.DateTime> assignment_date { get; set; }
-    
+        public int paymentAmount { get; set; }
+        public string is_installment { get; set; }
+        public Nullable<System.DateTime> installment_date { get; set; }
+        [JsonIgnore]
         public virtual Account Account { get; set; }
     }
 }

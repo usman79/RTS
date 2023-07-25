@@ -5,15 +5,31 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Consumer_Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="amount_due" Type="int" Nullable="false" />
-    <Property Name="status" Type="nvarchar(max)" Nullable="false" />
     <Property Name="longitude" Type="float" Nullable="false" />
     <Property Name="latitude" Type="float" Nullable="false" />
     <Property Name="Ward_Id" Type="int" Nullable="false" />
     <Property Name="address" Type="nvarchar(max)" />
     <Property Name="walk_sort" Type="int" Nullable="false" />
-    <Property Name="property_no" Type="int" Nullable="false" />
+    <Property Name="last_payment" Type="int" />
+    <Property Name="last_payment_date" Type="date" />
+    <Property Name="Account_No" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="statusId" Type="int" Nullable="false" />
+    <Property Name="Account_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Connection_Date" Type="date" />
+    <Property Name="Current_Demand" Type="int" />
+    <Property Name="propertyNo" Type="nvarchar(max)" />
+    <Property Name="visit_date" Type="datetime" />
+    <Property Name="visit_lat" Type="float" />
+    <Property Name="visit_long" Type="float" />
+    <Property Name="remarks" Type="nvarchar" MaxLength="50" />
+    <Property Name="is_assigned" Type="char" MaxLength="1" />
+    <Property Name="assignment_date" Type="date" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="partialPayment" Type="int" Nullable="false" />
+    <Property Name="nextVisit_date" Type="date" />
+    <Property Name="visits" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="accountDetail">
     <Key>
@@ -25,8 +41,17 @@
     <Property Name="visit_long" Type="float" />
     <Property Name="remarks" Type="nvarchar(max)" />
     <Property Name="accountId" Type="int" Nullable="false" />
-    <Property Name="is_assigned" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="assignment_date" Type="date" />
+    <Property Name="is_installment" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="installment_date" Type="date" />
+    <Property Name="paymentAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="accountStatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isPayment" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="AFI">
     <Key>
@@ -38,7 +63,67 @@
     <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="longitude" Type="float" Nullable="false" />
     <Property Name="latitude" Type="float" Nullable="false" />
-    <Property Name="password" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="appUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ticket" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="afi_id" Type="int" />
+    <Property Name="rfi_id" Type="int" />
+  </EntityType>
+  <EntityType Name="ConSummary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="entrdate" Type="date" Nullable="false" />
+    <Property Name="townid" Type="int" Nullable="false" />
+    <Property Name="domestic" Type="int" Nullable="false" />
+    <Property Name="commercial" Type="int" Nullable="false" />
+    <Property Name="cheritable" Type="int" Nullable="false" />
+    <Property Name="reading" Type="int" Nullable="false" />
+    <Property Name="average" Type="int" Nullable="false" />
+    <Property Name="water" Type="int" Nullable="false" />
+    <Property Name="sewer" Type="int" Nullable="false" />
+    <Property Name="water_and_sewer" Type="int" Nullable="false" />
+    <Property Name="aquifer_water" Type="int" Nullable="false" />
+    <Property Name="aquifer_sewer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DefaulterPayment">
+    <Key>
+      <PropertyRef Name="accountNo" />
+    </Key>
+    <Property Name="accountNo" Type="int" Nullable="false" />
+    <Property Name="townId" Type="int" Nullable="false" />
+    <Property Name="arears" Type="int" Nullable="false" />
+    <Property Name="amountRecieved" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="marquee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecoveryProgress">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="month" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="isComplete" Type="bit" Nullable="false" />
+    <Property Name="target" Type="int" Nullable="false" />
+    <Property Name="recovered" Type="int" Nullable="false" />
+    <Property Name="NCR" Type="int" Nullable="false" />
+    <Property Name="UCR" Type="int" Nullable="false" />
+    <Property Name="MisUse" Type="int" Nullable="false" />
+    <Property Name="townId" Type="int" Nullable="false" />
+    <Property Name="accountPaid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SubDivision">
     <Key>
@@ -48,34 +133,12 @@
     <Property Name="subdivision_desc" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Town_Id" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'RTSDB.dbo.Token' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Token">
-    <Key>
-      <PropertyRef Name="Value" />
-      <PropertyRef Name="ExpiryDate" />
-    </Key>
-    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ExpiryDate" Type="date" Nullable="false" />
-  </EntityType>
   <EntityType Name="Town">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="town_desc" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="userTokens">
-    <Key>
-      <PropertyRef Name="userId" />
-      <PropertyRef Name="token_expire_date" />
-      <PropertyRef Name="token" />
-    </Key>
-    <Property Name="userId" Type="int" Nullable="false" />
-    <Property Name="token_expire_date" Type="date" Nullable="false" />
-    <Property Name="token" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Ward">
     <Key>
@@ -86,6 +149,28 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
     <Property Name="SubDivision_Id" Type="int" Nullable="false" />
     <Property Name="AFI_Id" Type="int" />
   </EntityType>
+  <EntityType Name="webuser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ticket" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="officeId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Account__statusI__55F4C372">
+    <End Role="accountStatus" Type="Self.accountStatus" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountStatus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__accountDe__accou__5FB337D6">
     <End Role="Account" Type="Self.Account" Multiplicity="1" />
     <End Role="accountDetail" Type="Self.accountDetail" Multiplicity="*" />
@@ -95,6 +180,54 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
       </Principal>
       <Dependent Role="accountDetail">
         <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__appUser__afi_id__17036CC0">
+    <End Role="AFI" Type="Self.AFI" Multiplicity="0..1" />
+    <End Role="appUser" Type="Self.appUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AFI">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appUser">
+        <PropertyRef Name="afi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ConSummar__towni__00750D23">
+    <End Role="Town" Type="Self.Town" Multiplicity="1" />
+    <End Role="ConSummary" Type="Self.ConSummary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ConSummary">
+        <PropertyRef Name="townid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Defaulter__townI__60C757A0">
+    <End Role="Town" Type="Self.Town" Multiplicity="1" />
+    <End Role="DefaulterPayment" Type="Self.DefaulterPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DefaulterPayment">
+        <PropertyRef Name="townId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RecoveryP__townI__062DE679">
+    <End Role="Town" Type="Self.Town" Multiplicity="1" />
+    <End Role="RecoveryProgress" Type="Self.RecoveryProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Town">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RecoveryProgress">
+        <PropertyRef Name="townId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -149,26 +282,40 @@ warning 6002: The table/view 'RTSDB.dbo.userTokens' does not have a primary key 
   <EntityContainer Name="RTSDBModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="accountDetail" EntityType="Self.accountDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountStatus" EntityType="Self.accountStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AFI" EntityType="Self.AFI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appUser" EntityType="Self.appUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConSummary" EntityType="Self.ConSummary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DefaulterPayment" EntityType="Self.DefaulterPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="marquee" EntityType="Self.marquee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecoveryProgress" EntityType="Self.RecoveryProgress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubDivision" EntityType="Self.SubDivision" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Token" EntityType="Self.Token" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Token].[Value] AS [Value], 
-    [Token].[ExpiryDate] AS [ExpiryDate]
-    FROM [dbo].[Token] AS [Token]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="userTokens" EntityType="Self.userTokens" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [userTokens].[userId] AS [userId], 
-    [userTokens].[token_expire_date] AS [token_expire_date], 
-    [userTokens].[token] AS [token]
-    FROM [dbo].[userTokens] AS [userTokens]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="webuser" EntityType="Self.webuser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__statusI__55F4C372" Association="Self.FK__Account__statusI__55F4C372">
+      <End Role="accountStatus" EntitySet="accountStatus" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FK__accountDe__accou__5FB337D6" Association="Self.FK__accountDe__accou__5FB337D6">
       <End Role="Account" EntitySet="Account" />
       <End Role="accountDetail" EntitySet="accountDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__appUser__afi_id__17036CC0" Association="Self.FK__appUser__afi_id__17036CC0">
+      <End Role="AFI" EntitySet="AFI" />
+      <End Role="appUser" EntitySet="appUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ConSummar__towni__00750D23" Association="Self.FK__ConSummar__towni__00750D23">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="ConSummary" EntitySet="ConSummary" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Defaulter__townI__60C757A0" Association="Self.FK__Defaulter__townI__60C757A0">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="DefaulterPayment" EntitySet="DefaulterPayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RecoveryP__townI__062DE679" Association="Self.FK__RecoveryP__townI__062DE679">
+      <End Role="Town" EntitySet="Town" />
+      <End Role="RecoveryProgress" EntitySet="RecoveryProgress" />
     </AssociationSet>
     <AssociationSet Name="FK__Ward__AFI_Id__5AEE82B9" Association="Self.FK__Ward__AFI_Id__5AEE82B9">
       <End Role="AFI" EntitySet="AFI" />

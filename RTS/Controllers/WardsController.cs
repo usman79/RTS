@@ -17,7 +17,7 @@ namespace RTS.Controllers
         // GET: Wards
         public ActionResult Index()
         {
-            var wards = db.Wards.Include(w => w.SubDivision);
+            var wards = db.Wards.Include(w => w.SubDivision).Include(w => w.AFI);
             return View(wards.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace RTS.Controllers
         public ActionResult Create()
         {
             ViewBag.SubDivision_Id = new SelectList(db.SubDivisions, "Id", "subdivision_desc");
+            ViewBag.AFI_Id = new SelectList(db.AFIs, "Id", "name");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace RTS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ward_desc,SubDivision_Id")] Ward ward)
+        public ActionResult Create([Bind(Include = "Id,ward_desc,SubDivision_Id,AFI_Id")] Ward ward)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace RTS.Controllers
             }
 
             ViewBag.SubDivision_Id = new SelectList(db.SubDivisions, "Id", "subdivision_desc", ward.SubDivision_Id);
+            ViewBag.AFI_Id = new SelectList(db.AFIs, "Id", "name", ward.AFI_Id);
             return View(ward);
         }
 
@@ -74,6 +76,7 @@ namespace RTS.Controllers
                 return HttpNotFound();
             }
             ViewBag.SubDivision_Id = new SelectList(db.SubDivisions, "Id", "subdivision_desc", ward.SubDivision_Id);
+            ViewBag.AFI_Id = new SelectList(db.AFIs.OrderBy(a=>a.ticket), "Id", "ticket", ward.AFI_Id);
             return View(ward);
         }
 
@@ -82,7 +85,7 @@ namespace RTS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ward_desc,SubDivision_Id")] Ward ward)
+        public ActionResult Edit([Bind(Include = "Id,ward_desc,SubDivision_Id,AFI_Id")] Ward ward)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace RTS.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.SubDivision_Id = new SelectList(db.SubDivisions, "Id", "subdivision_desc", ward.SubDivision_Id);
+            ViewBag.AFI_Id = new SelectList(db.AFIs, "Id", "name", ward.AFI_Id);
             return View(ward);
         }
 

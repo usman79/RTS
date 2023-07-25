@@ -33,5 +33,6 @@ namespace MobileApi.Models
         public virtual DbSet<Town> Towns { get; set; }
         public virtual DbSet<Ward> Wards { get; set; }
         public virtual DbSet<Token> Tokens { get; set; }
+        public virtual DbSet<accountStatu> accountStatus { get; set; }
     }
 }

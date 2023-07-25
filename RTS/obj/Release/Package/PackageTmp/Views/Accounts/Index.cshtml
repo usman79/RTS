@@ -1,0 +1,111 @@
+﻿@model IEnumerable<RTS.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="atable">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.amount_due)*@
+                Arears
+            </th>
+
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.Consumer_Name)*@
+                Consumer
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_payment)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Account_No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account_Type)
+            </th>
+ 
+            <th>
+                @Html.DisplayNameFor(model => model.propertyNo)
+            </th>
+           
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.partialPayment)*@
+                Paid
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ward.ward_desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.accountStatu.value)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+   
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount_due)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Consumer_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_payment)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_Type)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.propertyNo)
+                </td>
+               
+
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.partialPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ward.ward_desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountStatu.value)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>}
+        </tbody>
+     
+
+</table>
+@section Scripts {
+    <script>
+            $("document").ready(function () {
+                $("#atable").DataTable();
+            });
+
+    </script>
+}

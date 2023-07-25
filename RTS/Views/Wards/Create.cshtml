@@ -4,48 +4,48 @@
     ViewBag.Title = "Create";
 }
 
-<div class="card">
-    <h2 class="card-header">Create Ward</h2>
-    <div class="card-body">
+<h2>Create</h2>
 
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal">
-                <h4>Ward</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <label class="control-label col-md-2">Ward</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ward_desc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ward_desc, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Sub Division</label>
-                    <div class="col-md-10">
-                        @Html.DropDownList("SubDivision_Id", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.SubDivision_Id, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Ward</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ward_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ward_desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ward_desc, "", new { @class = "text-danger" })
             </div>
-        }
+        </div>
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubDivision_Id, "SubDivision_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SubDivision_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubDivision_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AFI_Id, "AFI_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AFI_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AFI_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

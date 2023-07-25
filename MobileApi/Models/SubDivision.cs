@@ -9,6 +9,7 @@
 
 namespace MobileApi.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,7 +26,9 @@ namespace MobileApi.Models
         public int Town_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Ward> Wards { get; set; }
+        [JsonIgnore] 
         public virtual Town Town { get; set; }
     }
 }

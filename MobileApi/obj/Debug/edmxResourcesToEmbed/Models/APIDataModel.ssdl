@@ -5,15 +5,31 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Consumer_Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="amount_due" Type="int" Nullable="false" />
-    <Property Name="status" Type="nvarchar(max)" Nullable="false" />
     <Property Name="longitude" Type="float" Nullable="false" />
     <Property Name="latitude" Type="float" Nullable="false" />
     <Property Name="Ward_Id" Type="int" Nullable="false" />
     <Property Name="address" Type="nvarchar(max)" />
     <Property Name="walk_sort" Type="int" Nullable="false" />
-    <Property Name="property_no" Type="int" Nullable="false" />
+    <Property Name="last_payment" Type="int" />
+    <Property Name="last_payment_date" Type="date" />
+    <Property Name="Account_No" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="statusId" Type="int" Nullable="false" />
+    <Property Name="Account_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Connection_Date" Type="date" />
+    <Property Name="Current_Demand" Type="int" />
+    <Property Name="propertyNo" Type="nvarchar(max)" />
+    <Property Name="visit_date" Type="datetime" />
+    <Property Name="visit_lat" Type="float" />
+    <Property Name="visit_long" Type="float" />
+    <Property Name="remarks" Type="nvarchar" MaxLength="50" />
+    <Property Name="is_assigned" Type="char" MaxLength="1" />
+    <Property Name="assignment_date" Type="date" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="partialPayment" Type="int" Nullable="false" />
+    <Property Name="nextVisit_date" Type="date" />
+    <Property Name="visits" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="accountDetail">
     <Key>
@@ -25,8 +41,17 @@
     <Property Name="visit_long" Type="float" />
     <Property Name="remarks" Type="nvarchar(max)" />
     <Property Name="accountId" Type="int" Nullable="false" />
-    <Property Name="is_assigned" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="assignment_date" Type="date" />
+    <Property Name="is_installment" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="installment_date" Type="date" />
+    <Property Name="paymentAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="accountStatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isPayment" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="AFI">
     <Key>
@@ -82,6 +107,18 @@
     <Property Name="SubDivision_Id" Type="int" Nullable="false" />
     <Property Name="AFI_Id" Type="int" />
   </EntityType>
+  <Association Name="FK__Account__statusI__55F4C372">
+    <End Role="accountStatus" Type="Self.accountStatus" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountStatus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__accountDe__accou__5FB337D6">
     <End Role="Account" Type="Self.Account" Multiplicity="1" />
     <End Role="accountDetail" Type="Self.accountDetail" Multiplicity="*" />
@@ -157,12 +194,17 @@
   <EntityContainer Name="RTSDBModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="accountDetail" EntityType="Self.accountDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="accountStatus" EntityType="Self.accountStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AFI" EntityType="Self.AFI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="appUser" EntityType="Self.appUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubDivision" EntityType="Self.SubDivision" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Town" EntityType="Self.Town" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ward" EntityType="Self.Ward" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Account__statusI__55F4C372" Association="Self.FK__Account__statusI__55F4C372">
+      <End Role="accountStatus" EntitySet="accountStatus" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FK__accountDe__accou__5FB337D6" Association="Self.FK__accountDe__accou__5FB337D6">
       <End Role="Account" EntitySet="Account" />
       <End Role="accountDetail" EntitySet="accountDetail" />

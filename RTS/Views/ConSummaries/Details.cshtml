@@ -1,0 +1,114 @@
+﻿@model RTS.Models.ConSummary
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ConSummary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.entrdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entrdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.domestic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.domestic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.commercial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.commercial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cheritable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cheritable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reading)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reading)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.average)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.average)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.water)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.water)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sewer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sewer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.water_and_sewer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.water_and_sewer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aquifer_water)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aquifer_water)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aquifer_sewer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aquifer_sewer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Town.town_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Town.town_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

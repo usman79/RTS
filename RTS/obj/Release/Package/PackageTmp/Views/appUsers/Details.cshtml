@@ -1,0 +1,58 @@
+﻿@model RTS.Models.appUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>appUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ticket)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ticket)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rfi_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rfi_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AFI.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AFI.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

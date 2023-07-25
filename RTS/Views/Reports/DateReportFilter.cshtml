@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "DateReportFilter";
+}
+
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm("DateReport", "Reports", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="label col-1">
+                    <label class="col-form-label" style="color:black;font-size:15px;">Start Date</label>
+                </div>
+                <div class=" col-2">
+                    <input type="date" class="form-control  " name="startdate" required />
+                </div>
+                <div class="label col-1">
+                    <label class="col-form-label" style="color:black;font-size:15px;">End Date</label>
+                </div>
+                <div class="  col-2">
+                    <input type="date" class="form-control  " name="enddate" required/>
+                </div>
+
+                @*<div class="label col-1">
+                    <label class="col-form-label" style="color:black;font-size:15px;">SubDivision</label>
+                </div>
+                <div class="col-2">
+                    @Html.DropDownList("id", null, htmlAttributes: new { @class = "form-control" })
+
+                </div>*@
+
+                <div class="label col-1">
+                    <input type="submit" class="form-control btn btn-primary" value="Search" />
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+

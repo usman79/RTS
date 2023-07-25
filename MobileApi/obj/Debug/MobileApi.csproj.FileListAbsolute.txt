@@ -172,3 +172,12 @@ C:\Users\usman\Source\Repos\RTS\MobileApi\bin\EntityFramework.dll
 C:\Users\usman\Source\Repos\RTS\MobileApi\bin\EntityFramework.SqlServer.dll
 C:\Users\usman\Source\Repos\RTS\MobileApi\bin\EntityFramework.xml
 C:\Users\usman\Source\Repos\RTS\MobileApi\bin\EntityFramework.SqlServer.xml
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\Unity.Abstractions.dll
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\Unity.Container.dll
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\Unity.WebApi.dll
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\Unity.Abstractions.pdb
+C:\Users\usman\Source\Repos\RTS\MobileApi\bin\Unity.Container.pdb

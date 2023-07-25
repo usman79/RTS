@@ -103,7 +103,16 @@ namespace RTS.Controllers
             }
             return View(town);
         }
+        public ActionResult GetAfi(int? id)
+        {
+            var list = db.Wards.Where(x => x.SubDivision.Town_Id == id);
 
+
+            var afis = list.Where(x=>x.AFI!=null).Select(x => x.AFI).ToList();
+         
+             
+            return View("AFI", afis);
+        }
         // POST: Towns/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

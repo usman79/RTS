@@ -27,8 +27,29 @@ namespace MobileApi.Controllers
 
             return null;
         }
-       
+        public string getVersion()
+        {
+            return "2.1.0";
+        }
+        [HttpGet]
+        public string resetPassword(string ticket, string password,string newpassword)
+        {
+            var user = db.appUsers.FirstOrDefault(x=>x.ticket==ticket && x.password==password);
+            if (user != null)
+            {
+                user.password =newpassword;
+                int t=Convert.ToInt32(ticket);
+                Token tokenObj=db.Tokens.Where(x => x.id == t).First();
+                db.Tokens.Remove(tokenObj);
+                db.SaveChanges();
+                return "Successfully Changed";
+            }
+            else { return "wrong ticket or password"; }
+
+          
+        }
     }
+  
     public class userViewModel
     {
         public appUser user { get; set; }

@@ -19,6 +19,8 @@
         <AssociationConnector Association="RTSDBModel.FK_SubDivisionWard" ManuallyRouted="false" />
         <AssociationConnector Association="RTSDBModel.FK_TownSubDivision" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RTSDBModel.Token" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RTSDBModel.accountStatu" Width="1.5" PointX="3.375" PointY="7.875" />
+        <AssociationConnector Association="RTSDBModel.FK__Account__statusI__55F4C372" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

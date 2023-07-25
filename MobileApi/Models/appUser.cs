@@ -21,7 +21,6 @@ namespace MobileApi.Models
         public string role { get; set; }
         public Nullable<int> afi_id { get; set; }
         public Nullable<int> rfi_id { get; set; }
-
         [JsonIgnore]
         public virtual AFI AFI { get; set; }
     }

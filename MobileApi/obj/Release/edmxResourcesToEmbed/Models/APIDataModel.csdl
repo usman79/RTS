@@ -5,17 +5,34 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="amount_due" Type="Int32" Nullable="false" />
-    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="longitude" Type="Double" Nullable="false" />
     <Property Name="latitude" Type="Double" Nullable="false" />
     <Property Name="Ward_Id" Type="Int32" Nullable="false" />
     <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="walk_sort" Type="Int32" Nullable="false" />
-    <Property Name="property_no" Type="Int32" Nullable="false" />
     <NavigationProperty Name="accountDetails" Relationship="Self.FK__accountDe__accou__5FB337D6" FromRole="Account" ToRole="accountDetail" />
     <NavigationProperty Name="Ward" Relationship="Self.FK_WardAccount" FromRole="Account" ToRole="Ward" />
+    <Property Name="last_payment" Type="Int32" />
+    <Property Name="last_payment_date" Type="DateTime" Precision="0" />
+    <Property Name="Consumer_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Account_No" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="statusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="accountStatu" Relationship="RTSDBModel.FK__Account__statusI__55F4C372" FromRole="Account" ToRole="accountStatu" />
+    <Property Name="Account_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Connection_Date" Type="DateTime" Precision="0" />
+    <Property Name="Current_Demand" Type="Int32" />
+    <Property Name="propertyNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="visit_date" Type="DateTime" Precision="3" />
+    <Property Name="visit_lat" Type="Double" />
+    <Property Name="visit_long" Type="Double" />
+    <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_assigned" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="assignment_date" Type="DateTime" Precision="0" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="partialPayment" Type="Int32" Nullable="false" />
+    <Property Name="nextVisit_date" Type="DateTime" Precision="0" />
+    <Property Name="visits" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="accountDetail">
     <Key>
@@ -27,9 +44,10 @@
     <Property Name="visit_long" Type="Double" />
     <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="accountId" Type="Int32" Nullable="false" />
-    <Property Name="is_assigned" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="assignment_date" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Account" Relationship="Self.FK__accountDe__accou__5FB337D6" FromRole="accountDetail" ToRole="Account" />
+    <Property Name="paymentAmount" Type="Int32" Nullable="false" />
+    <Property Name="is_installment" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="installment_date" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="AFI">
     <Key>
@@ -191,6 +209,11 @@
       <End Role="SubDivision" EntitySet="SubDivisions" />
     </AssociationSet>
     <EntitySet Name="Tokens" EntityType="RTSDBModel.Token" />
+    <EntitySet Name="accountStatus" EntityType="RTSDBModel.accountStatu" />
+    <AssociationSet Name="FK__Account__statusI__55F4C372" Association="RTSDBModel.FK__Account__statusI__55F4C372">
+      <End Role="accountStatu" EntitySet="accountStatus" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Token">
     <Key>
@@ -200,4 +223,25 @@
     <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="id" Type="Int32" Nullable="false" />
   </EntityType>
+  <EntityType Name="accountStatu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isPayment" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="RTSDBModel.FK__Account__statusI__55F4C372" FromRole="accountStatu" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK__Account__statusI__55F4C372">
+    <End Type="RTSDBModel.accountStatu" Role="accountStatu" Multiplicity="1" />
+    <End Type="RTSDBModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountStatu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

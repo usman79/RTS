@@ -1,0 +1,830 @@
+﻿@model RTS.Models.RecoveryDashboard
+@{
+    ViewBag.Title = "recoveryDashboard";
+}
+@using RTS.Models;
+<div class="row" style="height:20%; min-height:170px;">
+    <div class=" col-lg-12 grid-margin stretch-card" style="margin-bottom:0.1rem;">
+        <div class="card card-rounded" style="padding:1px;margin-bottom:1px !important">
+            <div class="card-body" style="padding:1px;">
+                <div class="table-responsive">
+
+                    <table class="table table-bordered" style="margin-bottom:1px!important">
+                        <tbody>
+                            <tr bgcolor="#0671F1">
+                                <td colspan="12" style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h2 style="color:white;margin:1px!important"><b>SUMMARY</b> </h2>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#87CEEB">
+                                <td colspan="2" style="color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;"> </td>
+                                <td colspan="3" style="white-space: normal !important; word-wrap: normal; padding:2px;  text-align: center;">
+                                    <h5>
+                                        <b>
+                                            CATEGORY
+                                        </b>
+                                    </h5>
+                                </td>
+                                <td colspan="2" style=" white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h5><b>BILLING BASE </b> </h5>
+                                </td>
+                                <td colspan="5" style=" white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h5><b>CONNECTION TYPE</b></h5>
+                                </td>
+                            </tr>
+                            <tr bgcolor="#0671F1">
+                                <td colspan="2" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Title</b></h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Domestic</b></h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Commercial</b> </h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Charitable</b> </h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Reading</b> </h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Average</b> </h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Water</b></h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Sewer</b></h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Water & Sewer</b></h4>
+                                </td>
+                                <td colspan="1" style=" color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Aquifer Water</b></h4>
+                                </td>
+                                <td colspan="1" style="  color:white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>Aquifer Sewer</b></h4>
+                                </td>
+                            </tr>
+                            <tr bgcolor="white">
+                                <td colspan="2" style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>No. Of Customer(s)</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>@Model.ConSummary.domestic.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4>
+                                        <b>
+                                            @Model.ConSummary.commercial.ToString("N0")
+                                        </b>
+                                    </h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b> @Model.ConSummary.cheritable.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b> @Model.ConSummary.reading.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>@Model.ConSummary.average.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>@Model.ConSummary.water.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b>@Model.ConSummary.sewer.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b> @Model.ConSummary.water_and_sewer.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b> @Model.ConSummary.aquifer_water.ToString("N0")</b></h4>
+                                </td>
+                                <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                    <h4><b> @Model.ConSummary.aquifer_sewer.ToString("N0")</b></h4>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="height=80%">
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card" style="margin-bottom:0.1rem;">
+                <div class="card card-rounded" style="padding:1px;margin-bottom:0px">
+                    <div class="card-body" style="padding: 1px; margin-top: 0px !important">
+                        <div class="table-responsive pt-3" style=" padding-top: 0rem !important; ">
+                            <table class="table table-bordered table-striped" style=" margin-bottom: 0px;">
+                                <tbody class="rptable">
+                                    <tr bgcolor="green">
+                                        <td colspan="13" style=" background-color:green; color: white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h2 style="margin: 0px; font-weight: bold">
+                                                <b>
+                                                    @{
+                                                        string fiscal_year = "";
+                                                        if (Model.ConSummary.entrdate.Month < 7)
+                                                        {
+                                                            fiscal_year = (Model.ConSummary.entrdate.Year - 1).ToString() + "-" + Model.ConSummary.entrdate.Year;
+                                                        }
+                                                        else { fiscal_year = (DateTime.Today.Year).ToString() + "-" + (DateTime.Today.Year + 1).ToString(); }
+                                                    }
+                                                    SUMMARY FINANCIAL YEAR:   @fiscal_year
+                                                </b>
+                                            </h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    DDR
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td rowspan="2" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Total Customer(s)
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td rowspan="2" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    %age of Payee
+                                                </b>
+                                            </h4>
+                                        </td>
+
+                                        <td colspan="3" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    @{
+                                                        int currentMonth = Model.ConSummary.entrdate.Month;
+                                                        int currentYear = Model.ConSummary.entrdate.Year;
+                                                    }
+                                                    (Month : (@currentMonth) - @currentYear)
+                                                </b>
+                                            </h4>
+                                            <h6 style="margin: 1px !important; font-weight: bold">(In Millions)</h6>
+                                        </td>
+                                        <td colspan="3" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    FY:@fiscal_year Accumulative
+                                                </b>
+                                            </h4>
+                                            <h6 style="margin: 1px !important; font-weight: bold">(In Millions)</h6>
+                                        </td>
+
+                                        </td>
+                                        <td colspan="2" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h5 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Customer(s) Added
+                                                </b>
+                                            </h5>
+                                        </td>
+                                        <td rowspan="2" style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h5 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Misuse Detected
+                                                </b>
+                                            </h5 >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Recovery
+                                                </b>
+                                            </h4>
+                                            <h6>Till Date</h6>
+                                        </td>
+                                        <td style="background-color:#8FD400; min-width:100px; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Target
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    % Achieved
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Recovery
+                                                </b>
+                                            </h4>
+                                            <h6>Till Date</h6>
+                                        </td>
+                                        <td style="background-color:#8FD400; min-width:100px; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    Target
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    % Achieved
+                                                </b>
+                                            </h4>
+                                        </td>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h5 style="margin: 1px !important; font-weight: bold">
+                                                <b>
+                                                    NCR
+                                                </b>
+                                            </h5>
+                                        </td>
+                                        <td style="background-color:#8FD400; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h5 style="margin: 1px!important;font-weight:bold">
+                                                <b>
+                                                    UCR
+                                                </b>
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    @{ decimal tcTotal = 0;
+                                        decimal pTotal = 0;
+                                        decimal rTotal = 0;
+                                        decimal tTotal = 0;
+                                        decimal aTotal = 0;
+                                        decimal arTotal = 0;
+                                        decimal atTotal = 0;
+                                        decimal aaTotal = 0;
+
+                                        decimal nTotal = 0;
+                                        decimal uTotal = 0;
+                                        decimal mTotal = 0;}
+                                    @foreach (var item in Model.RPList)
+                                    {
+
+                                        decimal arecovered = 0;
+                                        decimal atarget = 0;
+                                        decimal aachieved = 0;
+                                        if (item.month < 7)
+                                        {
+                                            int y = DateTime.Today.Year - 1;
+                                            var rp = item.Town.RecoveryProgresses.Where(x => (x.month > 6 && x.year == y) || (x.month < 7 && x.year >= y));
+                                            foreach (var r in rp)
+                                            {
+                                                arecovered = arecovered + (decimal)r.recovered;
+                                                // atarget = atarget + (decimal)r.target;
+                                                atarget = (decimal)r.target * 12m;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            var rp = item.Town.RecoveryProgresses.Where(x => x.month > 6 && x.year == DateTime.Today.Year);
+                                            foreach (var r in rp)
+                                            {
+                                                arecovered = arecovered + (decimal)r.recovered;
+                                                atarget = (decimal)r.target * 12m;
+                                            }
+                                        }
+
+                                        arecovered = Math.Round(arecovered / 1000000m, 1);
+                                        atarget = Math.Round(atarget / 1000000m, 1);
+                                        aachieved = Math.Round((arecovered / atarget * 100), 2);
+                                        int total = 0;
+                                        decimal achieved = ((decimal)item.recovered / (decimal)item.target) * 100m;
+                                        achieved = Math.Round(achieved, 1);
+                                        decimal recovered = Math.Round((decimal)item.recovered / 1000000m, 2);
+                                        decimal target = Math.Round((decimal)item.target / 1000000m, 2);
+                                        decimal payee = 0;
+
+                                        var tc = item.Town.ConSummaries;
+                                        foreach (var i in tc)
+                                        {
+                                            if (i.entrdate.Month == item.month && i.entrdate.Year == item.year)
+                                            {
+                                                total = total + i.domestic + i.cheritable + i.commercial;
+                                            }
+                                        }
+                                        if (total != 0)
+                                        {
+                                            payee = Math.Round(((decimal)item.accountPaid / (decimal)total * 100m), 1);
+                                        }
+                                        <tr bgcolor="#A3D47">
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                                <b>
+                                                    <h4 style="margin: 1px !important; font-weight: bold"><b>@item.Town.town_desc </b></h4>
+                                                </b>
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@total.ToString("N0") </b></h4>@{ tcTotal = tcTotal + total;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@payee %</b></h4>@{ pTotal = pTotal + payee;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@recovered</b></h4>@{ rTotal = rTotal + recovered;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@target</b> </h4>@{ tTotal = tTotal + target;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@achieved %</b></h4>@{ aTotal = aTotal + achieved;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@arecovered</b></h4>@{ arTotal = arTotal + arecovered;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@atarget</b> </h4>@{ atTotal = atTotal + atarget;}
+                                            </td>
+
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:5px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@aachieved %</b></h4>@{ aaTotal = aaTotal + aachieved;}
+                                            </td>
+
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@item.NCR</b></h4>@{ nTotal = nTotal + item.NCR;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4><b>@item.UCR</b></h4>@{ uTotal = uTotal + item.UCR;}
+                                            </td>
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@item.MisUse</b></h4>@{ mTotal = mTotal + item.MisUse;}
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr bgcolor="#A3D47">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <b>
+                                                <h4 style="margin: 1px!important"><b>Total</b></h4>
+                                            </b>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@tcTotal </b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            @{ pTotal = pTotal / 8;}  <h4 style="margin: 1px!important"><b>@pTotal %</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@rTotal</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@tTotal</b> </h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            @{ aTotal = aTotal / 8;}   <h4><b>@aTotal %</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@arTotal</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@atTotal</b> </h4>
+                                        </td>
+
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:5px;  text-align: center;">
+                                            @{ aaTotal = aaTotal / 8;}     <h4 style="margin: 1px!important"><b>@aaTotal %</b></h4>
+                                        </td>
+
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@nTotal</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@uTotal</b></h4>
+                                        </td>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h4 style="margin: 1px!important"><b>@mTotal</b></h4>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card" style="margin-bottom:0.1rem;">
+                <div class="card card-rounded" style="padding:1px;margin-bottom:0px">
+                    <div class="card-body" style="padding:1px;margin-top:1px !important">
+                        <div class="table-responsive pt-3">
+                            <table class="table table-bordered table-striped">
+                                <tbody class="rptable">
+                                    <tr bgcolor="#0671F1;">
+                                        <td colspan="10" style=" background-color:#0671F1; color: white; white-space: normal !important; word-wrap: normal; padding:1px;  text-align: center;">
+                                            <h2 style="margin: 0px">
+                                                <b>
+                                                  Progress Against Defaulters FY:  @fiscal_year
+                                                </b>
+                                            </h2>
+                                        </td>
+                                    </tr>
+                                    <tr bgcolor="#87CEEB">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                            <h4 style="margin: 0px"> <b>Town Name </b></h4>
+                                        </td>
+                                        @foreach(var item in Model.dtList) {
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                            <h4 style="margin: 0px"><b>@item.town</b></h4>
+                                        </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>Defaulter Accounts (Frozen)</b></h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 0px!important"><b>@item.totalAccounts.ToString("N0")</b></h4>
+                                            </td>}
+
+                                        </tr>
+                                    <tr bgcolor="#87CEEB">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>Recovered Accounts</b></h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 0px!important"><b>@item.recoveredAccounts.ToString("N0")</b></h4>
+                                            </td>}
+
+                                        </tr>
+                                    <tr bgcolor="#0671F1;">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>% Recovered</b></h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                          var val=  (item.recoveredAccounts / item.totalAccounts) * 100;
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 0px!important"><b>@val%</b></h4>
+                                            </td>
+                                        }
+                                        </tr>
+
+                                    <tr bgcolor="#87CEEB">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>Defaulter Amount </b>(M)</h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 0px!important"><b>@(item.totalAmount / 1000000)</b></h4>
+
+                                           </td>
+                                        }
+                                        </tr>
+
+                                    <tr>
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>Recovered Amount</b> (M)</h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 0px!important"><b>@(item.recoveredAmount/1000000)</b></h4>
+                                            </td>
+                                        }
+                                        </tr>
+                                    <tr bgcolor="#87CEEB">
+                                        <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: left;">
+                                            <h4 style="margin: 0px!important"> <b>% Recovered</b></h4>
+                                        </td>
+                                        @foreach (var item in Model.dtList)
+                                        {
+                                            var val = (item.recoveredAmount/ item.totalAmount) * 100;
+                                            <td style="white-space: normal !important; word-wrap: normal; padding:1px; text-align: center;">
+                                                <h4 style="margin: 1px!important"><b>@val %</b></h4>
+                                            </td>
+                                        }
+                                        </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="min-height:20px;">
+            <div class="col-12 col-lg-12 col-lg-12 grid-margin stretch-card">
+                <div class="card card-rounded" style="background-color:#F9BB06;">
+                    <div class="card-body">
+                        <div>
+                            <div class="bar">
+                                <marquee scrollamount="4" scrolldelay="4">
+                                    <p>
+                                        <h4>
+                                            <b>
+
+                                               @Model.marquee
+
+                                            </b>
+                                        </h4>
+                                    </p>
+                                </marquee>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12 d-flex flex-column">
+                <div class="row flex-grow">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card card-rounded" style="padding:1px;margin-bottom:1px">
+                            <div class="card-body" style="padding:1px;">
+                                <div class="d-sm-flex justify-content-between align-items-start" >
+                                    <div style="text-align: center !important; width: 100%;" class="rptable">
+                                        <h3 class="card-title-P card-title-dash" style="margin:0px">Town-wise Collection Comparison (in Millions) </h3>
+                                    </div>
+                                </div>
+                                <div class="d-sm-flex align-items-center mt-1 justify-content-between">
+                                    <div class="me-3" style="width:100%;">
+                                        <div id="marketing-overview-legend"></div>
+                                    </div>
+                                </div>
+                                <div class="chartjs-bar-wrapper mt-3">
+                                    <div id="chartContainer" style="min-height:380px;  width: 100%;"></div>
+                                    @* <canvas id="marketingOverview" style="height: 200px;"></canvas>*@
+                                </div>
+                                <div class="chartjs-bar-wrapper mt-3">
+                                    <div id="chartContainer2" style="min-height:100px;  width: 100%;"></div>
+                                    @* <canvas id="marketingOverviewtotal"></canvas>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 d-flex flex-column">
+                <div class="row flex-grow">
+                    <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card" style="width: 100%;">
+                        <div class="card card-rounded" style="padding:1px;width:100%">
+                            <div class="card-body" style="padding: 5px; ">
+                                <div class="d-sm-flex justify-content-between align-items-start">
+                                    <div style="text-align: center; width: 100%;">
+                                        <h4 class="card-title card-title-dash" style="padding-top:1px;margin:0;padding:3px">Monthly Collection (in Millions)</h4>
+                                        <h5 class="card-subtitle card-subtitle-dash">
+                                            Comparison with budgetary target
+                                        </h5>
+                                    </div>
+                                    <div id="performance-line-legend"></div>
+                                </div>
+                                <div class="chartjs-wrapper mt-5" style="  width: 100%;">
+                                    <div id="chartContainer3" style="   width: 100%;"></div>
+                                    @*<canvas id="performaneLine"></canvas>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+
+        
+        $("document").ready(function () {
+            document.getElementById("dname").innerText = "REVENUE   BILLING  DASHBOARD";
+            showTime();
+            if (document.getElementById("uname").innerText == "MD") {
+                setInterval(function () {
+                    location.href = "/Home/Index";
+                }, 60000);
+            }
+            $.ajax({
+                url: "/RecoveryProgresses/getMonthlyChart",
+                success: function (result) {
+
+                    var chart = new CanvasJS.Chart("chartContainer", {
+                        animationEnabled: true,
+
+                        
+                        dataPointWidth: 10,
+                        axisY: {
+
+                            interval: 20,
+                            lineColor: "#00000000",
+                            labelFontColor: "#4F81BC",
+                            tickColor: "#4F81BC"
+                        },
+                        axisY2: {
+
+
+                            lineColor: "#00000000",
+                            labelFontColor: "#00000000",
+                            tickColor: "#00000000"
+                        }, axisX: {
+                            labelAngle: -55
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        legend: {
+                            cursor: "pointer",
+
+                        },
+                        data: [{
+                            color: "#52CDFF",
+                            type: "column",
+                            name: result[1][0].month + "-" + result[1][0].year,
+                            legendText: result[1][0].month + "-" + result[1][0].year,
+                           
+                            showInLegend: true,
+                            dataPoints: [
+                                 { label: result[1][0].label, y: result[1][0].y },
+                                { label: result[1][1].label, y: result[1][1].y },
+                                { label: result[1][2].label, y: result[1][2].y },
+                                { label: result[1][3].label, y: result[1][3].y },
+                                { label: result[1][4].label, y: result[1][4].y },
+                                { label: result[1][5].label, y: result[1][5].y },
+                                { label: result[1][6].label, y: result[1][6].y },
+                                { label: result[1][7].label, y: result[1][7].y }
+                            ]
+                        },
+                        {
+                            color: "#1F3BB3",
+                            type: "column",
+                            name: result[0][0].month + "-" + result[0][0].year,
+                            legendText: result[0][0].month + "-" + result[0][0].year,
+                            axisYType: "secondary",
+                            showInLegend: true,
+                            dataPoints: [
+                                { label: result[0][0].label, y: result[0][0].y },
+                                { label: result[0][1].label, y: result[0][1].y },
+                                { label: result[0][2].label, y: result[0][2].y },
+                                { label: result[0][3].label, y: result[0][3].y },
+                                { label: result[0][4].label, y: result[0][4].y },
+                                { label: result[0][5].label, y: result[0][5].y },
+                                { label: result[0][6].label, y: result[0][6].y },
+                                { label: result[0][7].label, y: result[0][7].y }
+
+                             
+                            ]
+                        }]
+                    });
+
+
+                    chart.render();
+               
+                    var last=0;
+                    var current=0;
+                    for (var i = 0; i < 8; i++) {
+                        last = last + result[1][i].y;
+                        current = current + result[0][i].y;
+                    }
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                dataPointWidth: 25,
+                
+                //axisX: {
+                //    title: "Total",
+                    
+                //},
+                axisY2: {
+                   
+                    gridColor: "#00000000",
+                    lineColor: "#00000000",
+                    labelFontColor: "Black",
+                    tickColor: "Black",
+                    interval: 200,
+                    minimum: 1, // Set the minimum value for the Y-axis
+                    
+                  
+                },
+                data: [{
+                    type: "bar",
+                    name: "companies",
+                    axisYType: "secondary", 
+                   
+                    dataPoints: [
+                        { y: current, label: "Total", color:'#4F81BC' },
+                        { y: last,  label: "Total", color: '#52CDFF'  },
+                    
+                    ]
+                }]
+            });
+            chart2.render();
+                }
+            });
+
+            $.ajax({
+                url: "/RecoveryProgresses/getTargetChart",
+                success: function (result) {
+                    var chart3 = new CanvasJS.Chart("chartContainer3", {
+                        animationEnabled: true,
+                        height: 200, 
+                        axisY: {
+                            lineColor: "#00000000",
+                            //valueFormatString: "#0,.",
+                            suffix: "",
+                            interval: 500
+                           
+                        },
+                        axisX: {
+                            //title: "Months After Launch"
+                            interval:1
+                        },
+                        toolTip: {
+                            shared: true
+                        },
+                        data: [{
+                            color: "#52CDFF",
+                            type: "stackedArea",
+                            showInLegend: true,
+                            toolTipContent: "<span style=\"color:#4F81BC\"><strong>{name}: </strong></span> {y}",
+                            name: "Target",
+                            dataPoints: [
+                                { x: result[0].month , y: result[0].t},
+                                { x: result[1].month  , y: result[1].t},
+                                { x: result[2].month  , y: result[2].t},
+                                { x: result[3].month  , y: result[3].t},
+                                { x: result[4].month  , y: result[4].t},
+                                { x: result[5].month  , y: result[5].t},
+                                { x: result[6].month  , y: result[6].t},
+                                { x: result[7].month  , y: result[7].t},
+                                { x: result[8].month  , y: result[8].t},
+                                { x: result[9].month  , y: result[9].t},
+
+                            ]
+                        },
+                        {
+                            color: "#1F3BB3",
+                            type: "stackedArea",
+                            name: "Recovered",
+                            toolTipContent: "<span style=\"color:#C0504E\"><strong>{name}: </strong></span> {y}<br><b>Total:<b> #total",
+                            showInLegend: true,
+                            dataPoints: [
+                                { x: result[0].month, y: result[0].y },
+                                { x: result[1].month, y: result[1].y },
+                                { x: result[2].month  , y: result[2].y },
+                                { x: result[3].month , y: result[3].y },
+                                { x: result[4].month  , y: result[4].y },
+                                { x: result[5].month  , y: result[5].y },
+                                { x: result[6].month  , y: result[6].y },
+                                { x: result[7].month  , y: result[7].y },
+                                { x: result[8].month  , y: result[8].y },
+                                { x: result[9].month  , y: result[9].y },
+                            ]
+                        }]
+                    });
+
+                    chart3.render();
+}
+
+            });
+            
+
+
+        });
+
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+            var s = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12;
+            }
+
+            if (h > 12) {
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+
+            setTimeout(showTime, 1000);
+
+        }
+    </script>}

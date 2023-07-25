@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RTS.Models.ConSummary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Conection Summaries</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Town.town_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entrdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.domestic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.commercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cheritable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.average)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.water)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sewer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.water_and_sewer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aquifer_water)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aquifer_sewer)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Town.town_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entrdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.domestic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.commercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cheritable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reading)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.average)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.water)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sewer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.water_and_sewer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aquifer_water)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aquifer_sewer)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
